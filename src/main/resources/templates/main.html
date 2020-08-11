@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>主页</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body style="background-color:#EBEBEB">
+<div th:replace="commons/top :: topbar"/>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="col-md-7 column">
+                <div class="carousel slide" id="carousel-240220">
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" data-target="#carousel-240220">
+                        </li>
+                        <li data-slide-to="1" data-target="#carousel-240220">
+                        </li>
+                        <li data-slide-to="2" data-target="#carousel-240220" class="active">
+                        </li>
+                    </ol>
+                    <div class="carousel-inner banner-img">
+                        <div class="item">
+                            <img alt="" src="img/1.jpg"/>
+                            <div class="carousel-caption">
+                                <h4>
+                                    First Thumbnail label
+                                </h4>
+                                <p>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img alt="" src="img/7.jpg"/>
+                            <div class="carousel-caption">
+                                <h4>
+                                    Second Thumbnail label
+                                </h4>
+                                <p>
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item active">
+                            <img alt="" src="img/3.jpg"/>
+                            <div class="carousel-caption">
+                                <h4>
+                                    Third Thumbnail label
+                                </h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#carousel-240220" data-slide="prev"><span
+                            class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control"
+                                                                                    href="#carousel-240220"
+                                                                                    data-slide="next"><span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+
+            <div class="col-md-4 column">
+                <div class="text-center" style="background: #185598; color: #EBEBEB">
+                    <h3>公告</h3>
+                </div>
+                <div style="background-color: white; width: 100%;height: 200px; overflow:auto;">
+                    <br>
+                    <ul th:each="announce:${announcements}">
+                        <li>
+                            <a th:href="@{/lookAnnounce(id=${announce.id})}" class="">
+                                <span th:text="${announce.title}"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 column">
+                <div class="text-center" style="background: #185598; color: #EBEBEB">
+                    <h3>热门排行</h3>
+                </div>
+                <div style="background-color: white; width: 100%;height: 200px; overflow:auto;">
+                    <br>
+                    <ul th:each="blog : ${countRanks}">
+                        <li>
+                            <a th:href="@{/lookBlog(title=${blog})}" class="">
+                                <span th:text="${blog}"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br>
+
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h3>
+                最新排行
+            </h3>
+            <div class="col-md-8 column">
+                <div th:each=" blog: ${blogList}">
+                    <div style="background-color: white; overflow:hidden;margin: 20px; padding: 20px">
+                        <a th:href="@{/lookBlog(id=${blog.id})}" class="">
+                            <span th:text="${blog.title}"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 column">
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

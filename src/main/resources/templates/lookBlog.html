@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>查看博客</title>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #EBEBEB">
+<div th:replace="commons/top::topbar"/>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-8 column">
+            <h3 class="text-center">[[${blog.title}]]</h3>
+            <div id="context2">
+             <p th:utext="${blog.context}"></p>
+            </div>
+            <div align="right">
+                作者：[[${Author}]] &nbsp; 访问量：[[${blog.count}]] &nbsp; 日期：[[${#dates.format(blog.date,'yyyy-MM-dd')}]]
+            </div>
+            <div>
+                <form th:action="@{/comment/}+${blog.id}" method="post">
+                    <textarea class="form-control" rows="3" name="context"></textarea>
+                        <button type="submit" class="btn btn-primary" style="margin-top:10px;margin-left: 670px">
+                            发表评论
+                        </button>
+                </form>
+            </div>
+            <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+            <div>
+               <h3>最新评论</h3>
+                <div th:each="comment: ${comments}">
+                    <p th:text="${comment.context}"></p>
+                    <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 column">
+            <blockquote>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                </p> <small>Someone famous <cite>Source Title</cite></small>
+            </blockquote>
+            <div class="carousel slide" id="carousel-54420">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-54420">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-54420">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-54420">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="img/3.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                First Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="img/1.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Second Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="img/2.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                Third Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                </div> <a class="left carousel-control" href="#carousel-54420" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-54420" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/wangEditor.min.js"></script>
+<!--<script type="text/javascript">
+    content2.val(editor.txt.html(${blog.context}))
+    $(function() {
+       // content2.val(editor.txt.html('${blog.context}'))
+        $("#content2").html($("#content").text());
+    });
+</script>-->
+</body>
+</html>
